@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.springtest.model.dao.AttendanceDao">
+	<select id="selectAttendance" parameterType="user" resultType="attendance">
+        SELECT ano, userid, issuedate, issue
+        FROM attendance
+        <if test="position = '교육생'">
+	        WHERE userid = #{userid}		        
+        </if>
+	</select>
+	<resultMap id="attendanceDetailMap" type="attendace">
+		<!-- property = "attendance.setAno()" column = "attendance.getAno()"  -->
+        <result property="ano" column="ano"/>
+        <result property="userid" column="userid"/>
+        <result property="issuedate" column="issuedate"/>
+        <result property="issue" column="issue"/>
+        <association property="user" column="userid" select="selectUserByPK"/>
+    </resultMap>
+    
+    <select id="selectAttendanceByPK" parameterType="string" resultMap="attendanceDetailMap">
+		select ano, userid, issuedate, issue
+		from attendance
+		where ano = #{ano}
+    </select>
+    
+    <select id="selectUserByPK" parameterType="string" resultType="user">
+        SELECT name, userid, rname, rclass, position
+        FROM userinfo
+        <if test="position == '교육생'">
+	        WHERE userid = #{userid}		        
+        </if>
+    </select>
+	
+	<insert id="insertAttendance" parameterType="user">
+        insert into attendance(
+        	ano, userid, issuedate, issue 
+       	) values (#{ano}, #{userid}, #{issuedate}, #{issue})
+    </insert>
+	<delete id="deleteAttendance" parameterType="string">
+		delete 
+		from attendance 
+		where ano = in(
+		<foreach item = "ano" collection="anos"  separator = ",">
+			${ano}
+		</foreach>
+		)
+	</delete>
+</mapper>
+
+
+
+
+
+	
+	
+	
+	
+
+</mapper>
