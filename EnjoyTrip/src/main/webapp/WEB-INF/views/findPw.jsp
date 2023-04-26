@@ -38,7 +38,7 @@
 			<button class="btn btn-primary" type="submit" id="btn-find" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
 			    Find Password
 			</button>
-			<a class="btn btn-primary" type="button" href="${root}/user/index">Home</a>
+			<a class="btn btn-primary" type="button" href="${root}/user/signup">Sign Up</a>
 		</form>
 		<c:if test="${not empty password}">
 			<div style = "background-color: white">

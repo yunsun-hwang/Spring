@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssafy.enjoytrip.dto.User;
 import com.ssafy.enjoytrip.model.service.UserService;
@@ -73,6 +75,20 @@ public class UserController{
         	model.addAttribute("noUser", "사용자 정보가 없습니다.");
         }
         return "findPw";
+    }
+//  아이디 존재여부 확인
+    @GetMapping("idcheck")
+    @ResponseBody
+    private String idcheck(@RequestParam("id") String id) throws Exception{
+    	System.out.println(id);
+    	int isExist = uService.idCheck(id);
+    	if (isExist == 0) {
+	        // 아이디가 이미 존재하는 경우
+	        return "unavailable";
+	    } else {
+	        // 아이디가 사용 가능한 경우
+	        return "available";
+	    }
     }
 //  signup 기능
     @PostMapping("signup")

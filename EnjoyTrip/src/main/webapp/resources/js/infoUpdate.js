@@ -66,21 +66,26 @@ function isEqualPw() {
 function isValidId(root){
 	let id = document.querySelector("#id").value;
 	let resultDiv = document.querySelector("#idcheck-result");
-	fetch(root+"/user?action=idcheck&id=" + id)
-		.then(response => response.text())
-	   	.then(data => {
-	   		console.log(data);
-		 	if(data != 0) {
-		 		resultDiv.textContent = "이미 존재하는 아이디입니다: "+ id;
-		 		isUseId = true;
-		 	}else{
+	console.log(id)
+    $.ajax({
+        type: 'GET',
+        url: '/user/idcheck',
+        data: { id: id },
+        success: function(response) {
+            if (response === 'available') {
+                // 아이디가 사용 가능한 경우
 		 		resultDiv.textContent = "사용 가능한 아이디입니다: "+ id;
 		 		isUseId = false;
-		 	}
-		 	if(signUpBtn) activeSignup();
-			if(updateBtn) activeUpdate();
-		 	changeInfo();
-	   	});
+            } else {
+                // 아이디가 이미 사용 중인 경우
+		 		resultDiv.textContent = "이미 존재하는 아이디입니다: "+ id;
+		 		isUseId = true;
+            }
+        }
+    });
+ 	if(signUpBtn) activeSignup();
+	if(updateBtn) activeUpdate();
+ 	changeInfo();
 }
 
 // 회원가입버튼 활성화 여부

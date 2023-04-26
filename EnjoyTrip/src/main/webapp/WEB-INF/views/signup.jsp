@@ -11,6 +11,8 @@
 <link href="${root}/resources/css/sign-up.css" rel="stylesheet" />
 <link href="${root}/resources/css/spot-style.css" rel="stylesheet" />
 <!-- Custom styles for this template -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body class="bg-light">
 	<div class="container">
@@ -106,6 +108,11 @@
 	<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 	<script type="text/javascript" src="${root}/resources/js/infoUpdate.js"></script>
 	<script type="text/javascript">
+		// name에서 키를 뗀 경우에: 갱신
+		document.querySelector("#name").addEventListener("keyup", function() {
+			changeInfo();
+		});
+
 		//id에서 키를 뗀 경우에: 아이디존재여부 확인->갱신
 		document.querySelector("#id").addEventListener("keyup", function() {
 			isValidId("${root}");
@@ -125,10 +132,6 @@
 			isEqualPw();
 		});
 
-		// name에서 키를 뗀 경우에: 갱신
-		document.querySelector("#name").addEventListener("keyup", function() {
-			changeInfo();
-		});
 
 		
 		// email에서 키를 뗀 경우에: 갱신
@@ -136,10 +139,9 @@
 			changeInfo();
 		});
 		
-		document.querySelector("#btn-signup").addEventListener("click", function () {
+		document.querySelector("#btn-signup").addEventListener("click", function (){ 
 			alert("등록이 성공했습니다.");
-  		  	 });
-	  	 });
+		});
 	</script>
 </body>
 </html>
