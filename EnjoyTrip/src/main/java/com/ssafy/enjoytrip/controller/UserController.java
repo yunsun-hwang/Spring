@@ -76,6 +76,11 @@ public class UserController{
         }
         return "findPw";
     }
+//  mypage로 이동
+    @GetMapping("mypageForm")
+	private String mypageForm() {
+    	return "mypage";
+	}
 //  아이디 존재여부 확인
     @GetMapping("idcheck")
     @ResponseBody
@@ -98,11 +103,7 @@ public class UserController{
     	return "signin";
 	}
     
-    @GetMapping("myPageForm")
-	private String mypageForm(User user, Model model) {
-    	model.addAttribute("user", user);
-    	return "mypage";
-	}
+
 //    @PostMapping("edit")
 //	private String edit(User user, Model model) {
 //		uService.editUser(user);
