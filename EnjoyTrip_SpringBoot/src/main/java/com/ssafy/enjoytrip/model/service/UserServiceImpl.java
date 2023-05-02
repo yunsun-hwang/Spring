@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(User user) throws Exception {
 		userMapper.deleteUser(user);
-		
 	}
 	@Override
 	public void editUser(User user) throws Exception {
@@ -39,6 +38,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User findPw(User user) throws SQLException {
 		return userMapper.selectUserPw(user);
+	}
+
+	@Override
+	public User getUser(String userId) throws SQLException {
+		return userMapper.selectUserById(userId);
 	}
 
 }

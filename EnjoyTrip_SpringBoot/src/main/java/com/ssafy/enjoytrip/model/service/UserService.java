@@ -11,4 +11,5 @@ public interface UserService {
     void editUser(User user) throws Exception;
 	User idCheck(String id) throws Exception;
 	User findPw(User user) throws SQLException;
+	User getUser(String userId) throws SQLException;
 }

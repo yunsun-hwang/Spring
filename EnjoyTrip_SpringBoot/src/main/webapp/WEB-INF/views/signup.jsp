@@ -10,7 +10,7 @@
 <link href="${root}/resources/css/min.css" rel="stylesheet" />
 <link href="${root}/resources/css/sign-up.css" rel="stylesheet" />
 <link href="${root}/resources/css/spot-style.css" rel="stylesheet" />
-<!-- Custom styles for this template -->
+<!-- Import JQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
@@ -131,7 +131,6 @@
 		document.querySelector("#pw2").addEventListener("keyup", function() {
 			isEqualPw();
 		});
-
 
 		
 		// email에서 키를 뗀 경우에: 갱신

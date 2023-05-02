@@ -11,7 +11,6 @@
 <link href="${root}/resources/css/sign-in.css" rel="stylesheet" />
 <link href="${root}/resources/css/spot-style.css" rel="stylesheet" /> 
 <%
-	//회원가입 후 로그인창으로 오면 메시지
 	String signupMsg = "";
 	if (request.getParameter("signup-msg") == null) {
 		signupMsg = "";

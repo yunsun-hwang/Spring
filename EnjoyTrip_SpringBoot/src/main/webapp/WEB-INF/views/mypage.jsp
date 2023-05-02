@@ -63,12 +63,11 @@
 						</div> <span class="text-muted" id="pw-print"></span>
 					</li>
 				</ul>
-				<form class="card p-2" method="post" action="${root}/user">
-					<input type="hidden" name="action" value="delete">
+				<form class="card p-2" method="post" action="${root}/user/delete">
 					<div class="input-group">
-						<input id="confirm-box" type="text" class="form-control"
+						<input id="confirmInput" type="text" class="form-control"
 							name="confirm-box" placeholder="Enter 'Confirm'" />
-						<button type="submit" class="btn btn-danger">회원 탈퇴</button>
+						<button type="submit" id= "confirmBtn" class="btn btn-danger" disabled=true>회원 탈퇴</button>
 					</div>
 				</form>
 			</div>
@@ -131,6 +130,17 @@
 		crossorigin="anonymous"></script>
 	<script type="text/javascript" src="${root}/resources/js/infoUpdate.js"></script>
 	<script>
+		// Confirm이라고 입력했을 경우에 버튼 valid
+		const confirmInput = document.getElementById('confirmInput');
+		const confirmBtn = document.getElementById('confirmBtn');
+		
+		confirmInput.addEventListener('input', () => {
+		  if (confirmInput.value === 'Confirm') {
+		    confirmBtn.disabled = false;
+		  } else {
+		    confirmBtn.disabled = true;
+		  }
+		});
 		// password에서 키를 뗀 경우에: pw체크->갱신
 		document.querySelector("#pw").addEventListener("keyup", function() {
 			let pw2 = document.querySelector("#pw2").value;
